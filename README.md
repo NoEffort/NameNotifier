@@ -1,2 +1,4 @@
 # NameNotifier
-Will notify the user when their name is said in chat.
+
+Ready for release. Known bugs:    
+- [ ] User mentioned will ping only the user, but the yellow display will be visible by everyone
