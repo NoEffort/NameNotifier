@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import me.noeffort.namenotifier.actionbar.Actionbar;
+
 public class ChatHandler implements Listener {
 
 	Main plugin = Main.get();
@@ -21,13 +23,8 @@ public class ChatHandler implements Listener {
 			String message = event.getMessage();
 			
 			if(message.toLowerCase().contains(target.getName().toLowerCase())) {
-				String color = ChatColor.getLastColors(message);
-				if(color == "") {
-					event.setMessage(message.replaceAll("(?i)" + target.getName(), ChatColor.YELLOW + target.getName() + ChatColor.getByChar("f")));
-					target.playSound(target.getLocation(), Sound.BLOCK_NOTE_CHIME, 4.0F, 1.5F);
-					return;
-				}
-				event.setMessage(message.replaceAll("(?i)" + target.getName().toLowerCase(), ChatColor.YELLOW + target.getName() + color));
+				Actionbar.sendActionbar(target, 
+						ChatColor.translateAlternateColorCodes('&', "&eYou have been pinged by: &6" + event.getPlayer().getName()), 100);
 				target.playSound(target.getLocation(), Sound.BLOCK_NOTE_CHIME, 4.0F, 1.5F);
 				return;
 			}
